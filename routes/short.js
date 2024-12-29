@@ -53,7 +53,7 @@ router.post("/short", async(req,res)=>{
 
 router.get("/short/:shortCode", async (req,res)=>{
     const shortCode = req.params.shortCode;
-    const shortURL = `http://localhost:4200/api/short/${shortCode}`;
+    const shortURL = `https://quicklinc-1.vercel.app/api/short/${shortCode}`;
 
     try {
         const result = await db.query("SELECT originalurl FROM urls WHERE shortenedurl=$1", [shortURL]);

@@ -33,7 +33,7 @@ client.on("messageCreate", async (message)=>{
         const url = message.content.trim().split("create ")[1]?.trim();
         
  let shortCode = shortid.generate();
- let shortUrl = `http://localhost:4200/api/short/${shortCode}`;
+ let shortUrl = `https://quicklinc-1.vercel.app/api/short/${shortCode}`;
 
  
         await db.query("INSERT INTO urls(originalurl, shortenedurl) VALUES($1,$2)", [url, shortUrl]);
@@ -58,7 +58,7 @@ if (interaction.commandName==='squeeze'){
     const url = interaction.options.getString('url').trim();
         
     let shortCode = shortid.generate();
-    let shortUrl = `http://localhost:4200/api/short/${shortCode}`;
+    let shortUrl = `https://quicklinc-1.vercel.app/api/short/${shortCode}`;
    
     
            await db.query("INSERT INTO urls(originalurl, shortenedurl) VALUES($1,$2)", [url, shortUrl]);
