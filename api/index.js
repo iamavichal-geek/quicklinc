@@ -1,6 +1,6 @@
 import express from "express";
 import pg from "pg";
-import shortRouter from "./routes/short.js";
+import shortRouter from "../routes/short.js";
 import bodyParser from "body-parser";
 
 const PORT = 4200;
