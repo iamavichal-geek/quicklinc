@@ -31,7 +31,7 @@ PG_CONNECTION_STRING=<Your_PostgreSQL_Connection_String>
 
 ### Step 1: Clone the Repository
 ```bash
-git clone <repository_url>
+git clone https://github.com/iamavichal-geek/quicklinc.git
 cd quicklinc
 ```
 
