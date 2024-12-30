@@ -4,6 +4,12 @@ QuickLinc is a powerful URL shortening service that integrates with Discord, all
 
 ---
 
+# QuickLinc - Hosting
+
+QuickLinc is hosted on Vercel - quicklinc-1.vercel.app
+
+---
+
 ## Features
 - Generate shortened URLs via a Discord bot.
 - Store and retrieve URLs using a PostgreSQL database.
