@@ -8,6 +8,8 @@ QuickLinc is a powerful URL shortening service that integrates with Discord, all
 
 QuickLinc is hosted on Vercel - quicklinc-1.vercel.app
 
+https://roadmap.sh/projects/url-shortening-service
+
 ---
 
 ## Features
