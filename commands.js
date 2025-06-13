@@ -10,6 +10,11 @@ const commands = [
     description: 'Replies with Pong!',
   },
 
+   {
+    name: 'pong',
+    description: 'Replies with Pong!',
+  },
+
   {
     name: 'squeeze',
     description: "Generate a shortened URL.",

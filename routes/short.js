@@ -34,7 +34,7 @@ router.post("/short", async(req,res)=>{
     } else {
 
  let shortCode = shortid.generate();
- let shortUrl = `http://localhost:4200/api/short/${shortCode}`;
+ let shortUrl = `https://quicklinc.vercel.app/api/short/${shortCode}`;
  console.log(shortUrl);
  
         await db.query("INSERT INTO urls(originalurl, shortenedurl) VALUES($1,$2)", [url, shortUrl]);

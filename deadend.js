@@ -51,27 +51,65 @@ client.on("messageCreate", async (message)=>{
 
 });
 
-client.on("interactionCreate", async (interaction)=>{
-// console.log(interaction);
-if (!interaction.isCommand()) return;
-if (interaction.commandName==='squeeze'){
-    const url = interaction.options.getString('url').trim();
+// client.on("interactionCreate", async (interaction)=>{
+// // console.log(interaction);
+// if (!interaction.isCommand()) return;
+// if (interaction.commandName==='squeeze'){
+//     const url = interaction.options.getString('url').trim();
         
-    let shortCode = shortid.generate();
-    let shortUrl = `https://quicklinc-1.vercel.app/api/short/${shortCode}`;
+//     let shortCode = shortid.generate();
+//     let shortUrl = `https://quicklinc-1.vercel.app/api/short/${shortCode}`;
    
     
-           await db.query("INSERT INTO urls(originalurl, shortenedurl) VALUES($1,$2)", [url, shortUrl]);
-await interaction.reply({
-    content: `Your shortened URL: ${shortUrl}`,
-          ephemeral: true, 
-})
-}
+//            await db.query("INSERT INTO urls(originalurl, shortenedurl) VALUES($1,$2)", [url, shortUrl]);
+// await interaction.reply({
+//     content: `Your shortened URL: ${shortUrl}`,
+//           ephemeral: true, 
+// })
+// }
 
-interaction.reply({
-    content:"Pong!"
-})
+// interaction.reply({
+//     content:"Pong!"
+// })
+// });
+
+client.on("interactionCreate", async (interaction) => {
+    if (!interaction.isCommand()) return;
+
+    try {
+        if (interaction.commandName === 'squeeze') {
+            // Defer the reply to avoid timeout
+            await interaction.deferReply({ ephemeral: true });
+
+            const url = interaction.options.getString('url').trim();
+
+            // Generate a shortened URL
+            let shortCode = shortid.generate();
+            let shortUrl = `https://quicklinc-1.vercel.app/api/short/${shortCode}`;
+
+            // Store in the database
+            await db.query("INSERT INTO urls(originalurl, shortenedurl) VALUES($1, $2)", [url, shortUrl]);
+
+            // Edit the deferred reply with the final response
+            await interaction.editReply({
+                content: `Your shortened URL: ${shortUrl}`,
+            });
+        } else if (interaction.commandName === 'ping') {
+            await interaction.reply({ content: "Pong!" });
+        } else if (interaction.commandName === 'pong'){
+            await interaction.reply({ content: "Pong Ping!"});
+        }
+    } catch (error) {
+        console.error("Error handling interaction:", error);
+
+        if (interaction.deferred || interaction.replied) {
+            await interaction.editReply({ content: "An error occurred while processing your request." });
+        } else {
+            await interaction.reply({ content: "An error occurred while processing your request.", ephemeral: true });
+        }
+    }
 });
+
 
 const TOKEN = process.env.DISCORD_TOKEN;
 

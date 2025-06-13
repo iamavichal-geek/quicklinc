@@ -9,6 +9,8 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 
 app.use("/api", shortRouter);
+
+
 // url, shortened url 
 // {
 //     "id": "1",
